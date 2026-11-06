@@ -36,10 +36,9 @@ class ElizaServerTest {
         assertEquals("The doctor is in.", list[0])
     }
 
-    @Disabled // Remove this line when you implement onChat
     @Test
     fun onChat() {
-        logger.info { "Test thread" }
+        logger.info { "This is the test thread" }
         val latch = CountDownLatch(4)
         val list = mutableListOf<String>()
 
@@ -49,8 +48,10 @@ class ElizaServerTest {
         val size = list.size
         // 1. EXPLAIN WHY size = list.size IS NECESSARY
         // 2. REPLACE BY assertXXX expression that checks an interval; assertEquals must not be used;
+        assert(size in 4..5)
         // 3. EXPLAIN WHY assertEquals CANNOT BE USED AND WHY WE SHOULD CHECK THE INTERVAL
         // 4. COMPLETE assertEquals(XXX, list[XXX])
+        assertEquals("Can you think of a specific example?", list[3])
     }
 }
 
@@ -72,8 +73,7 @@ class ComplexClient(
     private val list: MutableList<String>,
     private val latch: CountDownLatch,
 ) {
-    @OnMessage
-    @Suppress("UNUSED_PARAMETER") // Remove this line when you implement onMessage
+    @OnMessage // Remove this line when you implement onMessage
     fun onMessage(
         message: String,
         session: Session,
@@ -84,6 +84,9 @@ class ComplexClient(
         // 5. COMPLETE if (expression) {
         // 6. COMPLETE   sentence
         // }
+        if (list.size == 3) {
+            session.basicRemote.sendText("always")
+        }
     }
 }
 
