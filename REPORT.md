@@ -2,12 +2,12 @@
 
 ## What I specified
 
-[The sentence you will send and the answer you expect, as asked in the objective. Decided *before* generating or pasting code.]
+Looking at the code you can see that certain keywords expect only one specific answer. For example, the sentence 
+`"always"` can only trigger the specific response `"Can you think of a specific example?"`.
 
+That is why the sentence i will send is `"always"` and the answer I expect is `"Can you think of a specific example?"`.
 
 ## What I changed
-
-[Files and behaviour. Not a restatement of the starter README.]
 
 Edited the following files:
 - `src/test/kotlin/websockets/ElizaServerTest.kt`
@@ -16,31 +16,39 @@ Edited the following files:
   - Completed the `onChat` test 
 ## Technical decisions
 
-[Why you chose that sentence and that answer, and what you rejected.]
-
 - Sentence: `"always"`
 - Answer: `"Can you think of a specific example?"`
 
 Because the Eliza server is designed to respond to certain keywords in the user's input and the chosen sentence
 contains the keyword `"always"`, which can only trigger the specific response `"Can you think of a specific example?"`.
+(You could complicate the sentence with more words, but the keyword `"always"` is still present and will trigger the
+same response.)
+* `"always"` is the perfect choice because it is the first keyword that Eliza checks for in the input sentence and it
+* has a unique response.
 
+There were other options like `"because"` or `"sorry"` but all options with multiple answers were discarded.
 
 ## How I verified
 
-[Commands (`./gradlew check`), what failed first, what you fixed. You remain accountable for correctness.]
+Ran `./gradlew check` after fixing the tests. All tests passed successfully at first run.
 
-
+`BUILD FAILED` due to `import org.junit.jupiter.api.Disabled` being unused. I removed the import and re-ran `./gradlew
+check`, resulting in `BUILD SUCCESSFUL`.
+ 
+During the build a warning of `"A terminally deprecated method in sun.misc.Unsafe has been called"` appeared, but it
+did not affect the build success.
 
 ## AI disclosure
 
-Fill **either** the list **or** the no-AI line.
-
-- **Tools / skills:** …
-- **Purpose:** …
-- **Representative prompts:** … (or appendix)
-- **Affected files/sections:** …
-- **Validation steps:** …
-- **Citations:** … (external snippets you adapted)
-- **Human-reviewed:** what you checked, changed, or rejected
-
-Or: **No AI assistance** was used for this lab.
+- **Tools / skills:** GitHub Copilot trough IntelliJ IDEA addon and Gemini AI through chat. 
+- **Purpose:** Exploring the code, explaining and redacting.
+- **Representative prompts:**
+  - "¿How important is the deprecated method warning in the build?"
+  - "Check the redaction of the report without changing the meaning of the text."
+- **Affected files/sections:** All edited files were affected by AI to some extent, but the final implementation was
+reviewed by the author, and all suggestions were either accepted, modified, or rejected.
+- **Validation steps:** All suggestions were reviewed by the author and either accepted, modified, or rejected. The
+final implementation was tested and manually verified to ensure correctness.
+- **Citations:** No external sources were used for this lab, apart from the Eliza server code provided in the starter project.
+- **Human-reviewed:** All code and the report were reviewed by the author to ensure correctness and clarity. If any
+code was unclear or not understandable, I would have asked for clarification or rejected the suggestion.
