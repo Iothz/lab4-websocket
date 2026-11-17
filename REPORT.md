@@ -42,6 +42,8 @@ import and re-ran `./gradlew check`, resulting in `BUILD SUCCESSFUL`.
 During the build, a warning stating `"A terminally deprecated method in sun.misc.Unsafe has been called"` appeared,
 but it did not affect the successful build.
 
+Also executed `./gradlew ktlintCheck` to ensure that the code style was correct, and it passed successfully.
+
 ## AI disclosure
 
 - **Tools / skills:** GitHub Copilot through the IntelliJ IDEA add-on and Gemini AI through chat.
